@@ -1,4 +1,4 @@
-# JavaScript-Referrer-Information-Cookie
+# JavaScript Referrer Information Cookie
 JavaScript Referrer Information Cookie
 
 Dependencies:
