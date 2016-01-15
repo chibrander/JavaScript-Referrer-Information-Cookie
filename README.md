@@ -8,7 +8,9 @@ https://freegeoip.net/ needs to be up and running.
 
 var tr = new rInfo();
 
-tr.set(1);
+// Set for 15 Days.
+tr.set(15);
+
 tr.get("Location");
 tr.getAll();
 
