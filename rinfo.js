@@ -25,20 +25,19 @@ function rInfo() {
         if (strcookie.indexOf("ccReferrer") == -1 && strcookie != null && navigator.doNotTrack != true && navigator.cookieEnabled == true) {
 
 
-            // get variables and set cookie
 
-            jQuery.ajax({
-                url: '//freegeoip.net/json/',
-                type: 'POST',
-                dataType: 'jsonp',
-                success: function (location) {
-                    // example where I update content on the page.
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (xhttp.readyState == 4 && xhttp.status == 200) {
+                    var data = JSON.parse(xhttp.responseText);
+
+                    // get variables and set cookie
                     var cc_info = [];
-                    cc_info["ccLocation"] = location.city + ", " + location.region_code;
-                    cc_info["ccRegion"] = location.region_name;
-                    cc_info["ccIP"] = location.ip;
-                    cc_info["ccLongLat"] = location.longitude + ", " + location.latitude;
-                    cc_info["ccCountry"] = location.country_name;
+                    cc_info["ccLocation"] = data.city + ", " + data.region_code;
+                    cc_info["ccRegion"] = data.region_name;
+                    cc_info["ccIP"] = data.ip;
+                    cc_info["ccLongLat"] = data.longitude + ", " + data.latitude;
+                    cc_info["ccCountry"] = data.country_name;
 
                     var cc_all = [];
                     for (var iname in cc_info) {
@@ -51,7 +50,7 @@ function rInfo() {
                     cc_all["ccReferrer"] = document.referrer;
                     cc_all["ccLanding Page"] = document.URL;
                     cc_all["ccEntry Date"] = cc_dateobj.toString();
-                    cc_all["ccExpiration Days"] = 30;
+                    cc_all["ccExpiration Days"] = exp_days;
                     cc_all["ccSystem"] = navigator.platform;
                     cc_all["ccBrowser"] = navigator.appVersion;
                     cc_all["ccWidth"] = window.screen.width;
@@ -64,9 +63,14 @@ function rInfo() {
                         cc_settCookie(name, cc_all[name], exp_days);
                     }
 
-                    return "Success";
                 }
-            });
+            };
+            xhttp.open("GET", "//freegeoip.net/json/", true);
+            xhttp.send();
+
+
+
+
 
             // END of setting Cookie
 
