@@ -47,6 +47,14 @@ function rInfo() {
     }
 
 
+    var cc_results = function (txt) {
+        if (txt == 0) {
+            return cc_getInfo();
+        } else {
+            return cc_getCookie("cc" + txt);
+        }
+    }
+
 
     var cc_setCookie = function (exp_days, txt) {
         var strcookie = document.cookie;
@@ -91,7 +99,7 @@ function rInfo() {
                         cc_settCookie(name, cc_all[name], exp_days);
                     }
 
-                    return cc_getInfo();
+                    return cc_results(txt);
 
                 }
             };
@@ -107,16 +115,16 @@ function rInfo() {
         } else if (strcookie == null) {
             return "Error!";
         } else {
-            if (txt == undefined) {
-                return cc_getInfo();
-            } else {
-                return cc_getCookie("cc" + txt);
-            }
+            return cc_results(txt);
         }
 
 
 
     }
+
+
+
+
 
 
     this.run = function (days, field) {
