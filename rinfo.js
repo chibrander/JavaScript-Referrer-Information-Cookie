@@ -1,5 +1,6 @@
 // Author: Chi Brander, Inc.
 // URL: http://www.chicagocomputerclasses.com/
+// Thanks to: http://www.w3schools.com/js/js_cookies.asp
 
 function rInfo() {
 
