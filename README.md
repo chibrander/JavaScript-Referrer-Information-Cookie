@@ -1,5 +1,5 @@
-# JQuery-JavaScript-Referrer-Information-Cookie
-JQuery - JavaScript Referrer Information Cookie
+# JavaScript-Referrer-Information-Cookie
+JavaScript Referrer Information Cookie
 
 Dependencies:
 https://freegeoip.net/ needs to be up and running.
