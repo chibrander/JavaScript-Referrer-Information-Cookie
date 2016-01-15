@@ -22,9 +22,33 @@ function rInfo() {
         return "";
     }
 
+    var cc_getInfo = function () {
+        var cc_call = [];
+        cc_call["ccReferrer"] = cc_getCookie("ccReferrer");
+        cc_call["ccLanding Page"] = cc_getCookie("ccLanding Page");
+        cc_call["ccEntry Date"] = cc_getCookie("ccEntry Date");
+        cc_call["ccExpiration Days"] = cc_getCookie("ccExpiration Days");
+        cc_call["ccSystem"] = cc_getCookie("ccSystem");
+        cc_call["ccBrowser"] = cc_getCookie("ccBrowser");
+        cc_call["ccWidth"] = cc_getCookie("ccWidth");
+        cc_call["ccHeight"] = cc_getCookie("ccHeight");
+        cc_call["ccOrientation"] = cc_getCookie("ccOrientation");
+        cc_call["ccLocation"] = cc_getCookie("ccLocation");
+        cc_call["ccRegion"] = cc_getCookie("ccRegion");
+        cc_call["ccIP"] = cc_getCookie("ccIP");
+        cc_call["ccLongLat"] = cc_getCookie("ccLongLat");
+        cc_call["ccCountry"] = cc_getCookie("ccCountry");
+        var str = "";
+        for (var name in cc_call) {
+            str += name.substring(2) + ": " + cc_call[name] + ";" + "\n";
+        }
+        return str;
+
+    }
 
 
-    var cc_setCookie = function (exp_days) {
+
+    var cc_setCookie = function (exp_days, txt) {
         var strcookie = document.cookie;
         if (strcookie.indexOf("ccReferrer") == -1 && strcookie != null && navigator.doNotTrack != true && navigator.cookieEnabled == true) {
 
@@ -67,56 +91,36 @@ function rInfo() {
                         cc_settCookie(name, cc_all[name], exp_days);
                     }
 
+                    return cc_getInfo();
+
                 }
             };
             xhttp.open("GET", "//freegeoip.net/json/", true);
             xhttp.send();
 
-
-
-
-
             // END of setting Cookie
 
+        } else if (navigator.doNotTrack == true) {
+            return "Do Not Track Enabled";
+        } else if (navigator.cookieEnabled != true) {
+            return "Cookies Are Disabled";
+        } else if (strcookie == null) {
+            return "Error!";
+        } else {
+            if (txt == undefined) {
+                return cc_getInfo();
+            } else {
+                return cc_getCookie("cc" + txt);
+            }
         }
+
+
+
     }
 
 
-
-    var cc_getInfo = function () {
-        var cc_call = [];
-        cc_call["ccReferrer"] = cc_getCookie("ccReferrer");
-        cc_call["ccLanding Page"] = cc_getCookie("ccLanding Page");
-        cc_call["ccEntry Date"] = cc_getCookie("ccEntry Date");
-        cc_call["ccExpiration Days"] = cc_getCookie("ccExpiration Days");
-        cc_call["ccSystem"] = cc_getCookie("ccSystem");
-        cc_call["ccBrowser"] = cc_getCookie("ccBrowser");
-        cc_call["ccWidth"] = cc_getCookie("ccWidth");
-        cc_call["ccHeight"] = cc_getCookie("ccHeight");
-        cc_call["ccOrientation"] = cc_getCookie("ccOrientation");
-        cc_call["ccLocation"] = cc_getCookie("ccLocation");
-        cc_call["ccRegion"] = cc_getCookie("ccRegion");
-        cc_call["ccIP"] = cc_getCookie("ccIP");
-        cc_call["ccLongLat"] = cc_getCookie("ccLongLat");
-        cc_call["ccCountry"] = cc_getCookie("ccCountry");
-        var str = "";
-        for (var name in cc_call) {
-            str += name.substring(2) + ": " + cc_call[name] + ";" + "\n";
-        }
-        return str;
-
-    }
-
-    this.getAll = function () {
-        return cc_getInfo();
-    }
-
-    this.set = function (days) {
-        cc_setCookie(days);
-    }
-
-    this.get = function (name) {
-        return cc_getCookie("cc" + name);
+    this.run = function (days, field) {
+        return cc_setCookie(days, field);
     }
 
 
