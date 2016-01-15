@@ -9,9 +9,11 @@ https://freegeoip.net/ needs to be up and running.
 var tr = new rInfo();
 
 // Set for 15 Days.
-tr.set(15);
+tr.run(15);
 
-tr.get("Location");
-tr.getAll();
+// Returns All
+tr.run(15,0);
+
+tr.run(15,"Location");
 
 ```
