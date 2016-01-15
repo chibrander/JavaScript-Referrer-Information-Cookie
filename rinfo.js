@@ -108,7 +108,7 @@ function rInfo() {
     }
 
     this.get = function (name) {
-        return cc_getCookie(name);
+        return cc_getCookie("cc" + name);
     }
 
 
