@@ -2,7 +2,7 @@
 JQuery - JavaScript Referrer Information Cookie
 
 Dependencies:
-https://freegeoip.net/ Needs to be up and running.
+https://freegeoip.net/ needs to be up and running.
 
 ```javascript
 
