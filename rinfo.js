@@ -1,3 +1,6 @@
+// Author: Chi Brander, Inc.
+// URL: http://www.chicagocomputerclasses.com/
+
 function rInfo() {
 
     var cc_settCookie = function (cname, cvalue, exdays) {
