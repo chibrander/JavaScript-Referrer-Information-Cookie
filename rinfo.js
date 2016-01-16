@@ -88,7 +88,7 @@ function rInfo() {
                     cc_all["ccEntry Date"] = cc_dateobj.toString();
                     cc_all["ccExpiration Days"] = exp_days;
                     cc_all["ccSystem"] = navigator.platform;
-                    cc_all["ccBrowser"] = navigator.appVersion;
+                    cc_all["ccBrowser"] = navigator.appVersion.replace(";","");
                     cc_all["ccWidth"] = window.screen.width;
                     cc_all["ccHeight"] = window.screen.height;
                     cc_all["ccOrientation"] = window.screen.orientation.type;
