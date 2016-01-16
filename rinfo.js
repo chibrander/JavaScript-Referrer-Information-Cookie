@@ -35,6 +35,7 @@ function rInfo() {
         cc_call["ccOrientation"] = cc_getCookie("ccOrientation");
         cc_call["ccLocation"] = cc_getCookie("ccLocation");
         cc_call["ccRegion"] = cc_getCookie("ccRegion");
+        cc_call["ccZip"] = cc_getCookie("ccZip");
         cc_call["ccIP"] = cc_getCookie("ccIP");
         cc_call["ccLongLat"] = cc_getCookie("ccLongLat");
         cc_call["ccCountry"] = cc_getCookie("ccCountry");
@@ -74,6 +75,7 @@ function rInfo() {
                     cc_info["ccIP"] = data.ip;
                     cc_info["ccLongLat"] = data.longitude + ", " + data.latitude;
                     cc_info["ccCountry"] = data.country_name;
+                    cc_info["ccZip"] = data.zip_code;
 
                     var cc_all = [];
                     for (var iname in cc_info) {
@@ -103,7 +105,7 @@ function rInfo() {
 
                 }
             };
-            xhttp.open("GET", "//freegeoip.net/json/", true);
+            xhttp.open("GET", "https://freegeoip.net/json/", true);
             xhttp.send();
 
             // END of setting Cookie
